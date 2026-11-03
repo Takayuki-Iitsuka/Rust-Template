@@ -1,0 +1,27 @@
+[package]
+name = "atcoder"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.89"
+publish = false
+
+# AtCoder の言語アップデート(2025)ジャッジ環境に合わせた依存。
+# バージョンは https://img.atcoder.jp/file/language-update/language-list.html で要確認。
+[dependencies]
+proconio = { version = "=0.5.0", features = ["derive"] }
+itertools = "=0.14.0"
+ac-library-rs = "=0.1.1"
+
+[lib]
+name = "library"
+path = "src/lib.rs"
+
+[profile.release]
+opt-level = 3
+debug = false
+overflow-checks = false
+
+# 手元のデバッグ時にオーバーフローを検出する(AtCoder 本番は release)
+[profile.dev]
+opt-level = 1
+overflow-checks = true
